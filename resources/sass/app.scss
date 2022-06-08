@@ -1,0 +1,15 @@
+$bg : red;
+$textColor : #333;
+$ctnBg : #f1d1f1d1;
+
+
+.container {
+    background-color: $ctnBg;
+    text-align: center;
+}
+.btn-default {
+    width: 120px;
+    height: 32px;
+    background-color: $bg;
+    color: $textColor;
+}
