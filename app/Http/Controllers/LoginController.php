@@ -30,10 +30,6 @@ class LoginController extends Controller
             'username' => ['required', 'max:45'],
             'password' => ['required', 'max:255']
         ]);
-
-        if($request->username === 'abc') {
-            return redirect()->back()->with('error', 'Your Account Not Found');
-        }
 /*
         $account = DB::table('account')
                     ->where('username', '=', $request->username)
@@ -44,17 +40,23 @@ class LoginController extends Controller
             return redirect()->back()->with('error', 'Your Account Not Found');
         }
         $verify_password = password_verify($request->password, $account->password);
+
+         session(['user' => $account]);
 */
+
+
+        if($request->username !== 'abc') {
+            return redirect()->back()->with('error', 'Your Account Not Found');
+        }
         $pass_hash = password_hash('1234', PASSWORD_BCRYPT);
         $verify_password = password_verify($request->password, $pass_hash);
 
-         if (!$verify_password) {
+
+        if (!$verify_password) {
             return redirect()->back()->with('error', 'Your Password Incorrect');
         }
-         /*
-         session(['user' => $account]);
-          */
-         session(['user' => $request->username]);
+
+
          return redirect()->route('home');
 
     }
