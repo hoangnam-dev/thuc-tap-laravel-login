@@ -18,3 +18,7 @@ mix.sass('resources/sass/app.scss', 'public/assets/css')
     .sass('resources/sass/style.react.scss', 'public/assets/css')
     .sass('resources/sass/style.scss', 'public/assets/css')
 ;
+
+mix.js('resources/js/app.js', 'public/assets/js')
+mix.js('resources/js/main.js', 'public/assets/js')
+;

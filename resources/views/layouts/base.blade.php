@@ -30,6 +30,9 @@
 <!--end::Main-->
 <script>var hostUrl = "assets/";</script>
 <!--begin::Javascript-->
+<script src="{{ asset('assets/js/app.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+{{-- <script src="{{ asset('assets/js/main.js') }}"></script> --}}
 <!--begin::Global Javascript Bundle(used by all pages)-->
 {{--
 <script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>

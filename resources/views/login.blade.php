@@ -4,7 +4,7 @@
         <!--begin::Authentication - Sign-in -->
         <div
             class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed"
-            style="background-image: url(assets/media/illustrations/sketchy-1/14.png">
+            style="background-image: url({{ asset('assets/media/illustrations/sketchy-1/14.png') }})">
             <!--begin::Content-->
             <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
                 <!--begin::Logo-->
@@ -18,7 +18,7 @@
                 <!--begin::Wrapper-->
                 <div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
                     <!--begin::Form-->
-                    <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" method="POST" action="{{ route('login') }}">
+                    <form class="form w-100"  novalidate="novalidate" id="sign_in_form" method="POST" action="{{ route('login') }}">
                         @csrf
                         @method('POST')
                         <!--begin::Heading-->
@@ -38,21 +38,22 @@
                         </div>
                         <!--begin::Heading-->
                         <!--begin::Input group-->
-                        <div class="fv-row mb-10">
+                        <div class="fv-row mb-10" id="username_flied">
                             <!--begin::Label-->
                             <label class="form-label fs-6 fw-bolder text-dark">Username</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input class="form-control form-control-lg form-control-solid" type="text" name="username"
+                            <input id="username" class="form-control form-control-lg form-control-solid" type="text" name="username" rules="required" placeholder="Ex: admin123"
                                    autocomplete="off" value="{{ old('username') }}" required/>
                             <!--end::Input-->
                             @error('username')
-                                <label class="form-label fs-6 fw-bolder text-danger mt-1">{{ $message }}</label>
+                                <label class="form-label fs-6 fw-bolder text-danger mt-2">{{ $message }}</label>
                             @enderror
+                            <span id="username_err" class="form-label fs-6 fw-bolder text-danger mt-2"></span>
                         </div>
                         <!--end::Input group-->
                         <!--begin::Input group-->
-                        <div class="fv-row mb-10">
+                        <div class="fv-row mb-10" id="username_flied">
                             <!--begin::Wrapper-->
                             <div class="d-flex flex-stack mb-2">
                                 <!--begin::Label-->
@@ -65,12 +66,13 @@
                             </div>
                             <!--end::Wrapper-->
                             <!--begin::Input-->
-                            <input class="form-control form-control-lg form-control-solid" type="password"
+                            <input id="password" class="form-control form-control-lg form-control-solid" type="password"  rules="required|min:6" placeholder="Enter your password"
                                    name="password" autocomplete="off" required/>
                             <!--end::Input-->
                             @error('password')
-                                <label class="form-label fs-6 fw-bolder text-danger mt-1">{{ $message }}</label>
+                                <label class="form-label fs-6 fw-bolder text-danger mt-2">{{ $message }}</label>
                             @enderror
+                            <span id="password_err" class="form-label fs-6 fw-bolder text-danger mt-2"></span>
                         </div>
                         <!--end::Input group-->
                         <!--begin::Actions-->
@@ -79,14 +81,14 @@
                         @endif
                         <div class="text-center">
                             <!--begin::Submit button-->
-                            <button type="submit" id="kt_sign_in_submit" class="btn btn-lg btn-primary w-100 mb-5">
-
-                                <span class="indicator-label">Continue</span>
+                            <button type="submit" class="btn btn-lg btn-primary w-100 mb-5">
+                                <span class="indicator-label">Login</span>
                                  {{--
                                 <input type="submit" class="indicator-label" value="Login">
-                                 --}}
                                 <span class="indicator-progress">Please wait...
-									<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                </span>
+                                --}}
                             </button>
                             <!--end::Submit button-->
                             {{--
