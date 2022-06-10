@@ -19,8 +19,7 @@ $('#sign_in_form').on('submit',function(e){
         return false
     }
     else{
-        $form = this;
-        $form.unbind('submit').submit();
+        this.submit();
         return true
     }
 });
