@@ -6,7 +6,7 @@ $('#sign_in_form').on('submit',function(e){
     var username  = $.trim($('#username').val());
     var password  = $.trim($('#password').val());
     var flags = [];
-    
+
     // Username
     flags.push(validUsername(username, $('#username_err')));
 
@@ -20,7 +20,6 @@ $('#sign_in_form').on('submit',function(e){
     }
     else{
         $form = this;
-        console.log(typeof $form);
         $form.unbind('submit').submit();
         return true
     }
