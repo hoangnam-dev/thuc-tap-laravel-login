@@ -13,7 +13,7 @@ $('#sign_in_form').on('submit',function(e){
     // Password
     flags.push(validPassword(password, $('#password_err')));
 
-    // Check if all flags are true
+    // Check false value in flags
     var check = flags.indexOf(false);
     if(check >=0){
         return false
