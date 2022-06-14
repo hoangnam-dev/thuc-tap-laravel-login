@@ -1,61 +1,73 @@
-import  $ from 'jquery';
+// import  $ from '~jquery';
+import $ from 'jquery';
+console.log($, '--------------------------');
+$().on('click mouseEnter', function() {
+    console.log(arguments);
+})
 
-$('#sign_in_form').on('submit',function(e){
-    e.preventDefault();
+require('jquery-validation');
+console.log($, '--------------------------');
+$(function () {
+    console.log('abcsj')
+    $("#sign_in_form").validate({
+        onfocusout: false,
+        onkeyup: false,
+        onclick: false,
+        rules: {
+            "username": {
+                required: true,
+                maxlength: 15
+            },
+            "password": {
+                required: true,
+                minlength: 3
+            }
+        },
+        messages: {
+            "username": {
+                required: "Hãy nhập User name của bạn",
+                maxlength: "Hãy nhập tối đa 15 ký tự"
+            },
+            "password": {
+                required: "Hãy nhập  Password của bạn",
+                minlength: "Hãy nhập tối thiểu 3 ký tự"
+            },
+        },
+        errorPlacement: function(label, element) {
+            label.addClass('fv-plugins-message-container invalid-feedback');
+            label.insertAfter(element);
+        },
+        wrapper: 'label'
+    });
 
-    var username  = $.trim($('#username').val());
-    var password  = $.trim($('#password').val());
-    var flags = [];
-
-    // Username
-    flags.push(validUsername(username, $('#username_err')));
-
-    // Password
-    flags.push(validPassword(password, $('#password_err')));
-
-    // Check false value in flags
-    var check = flags.indexOf(false);
-    if(check >=0){
-        return false
-    }
-    else{
-        this.submit();
-        return true
-    }
+    $("#sign_up_form").validate({
+        onfocusout: false,
+        onkeyup: false,
+        onclick: false,
+        rules: {
+            "username": {
+                required: true,
+                maxlength: 15
+            },
+            "password": {
+                required: true,
+                minlength: 3
+            }
+        },
+        messages: {
+            "username": {
+                required: "Hãy nhập User name của bạn",
+                maxlength: "Hãy nhập tối đa 15 ký tự"
+            },
+            "password": {
+                required: "Hãy nhập  Password của bạn",
+                minlength: "Hãy nhập tối thiểu 3 ký tự"
+            },
+        },
+        errorPlacement: function(label, element) {
+            label.addClass('fv-plugins-message-container invalid-feedback');
+            label.insertAfter(element);
+        },
+        wrapper: 'label'
+    });
 });
-
-function showMessage(messageSelector, message){
-    messageSelector.text(message);
-}
-
-function validUsername(username, errorSelector){
-    var result = true;
-    if (username == '' || username.length < 3){
-        showMessage(errorSelector, 'Username cannot be empty and must be more than 3 characters');
-        return result = false;
-    }
-    if (username.includes(' ')){
-        showMessage(errorSelector, 'Username cannot contain spaces');
-        return result = false;
-    }
-    if(result) {
-        errorSelector.text('');
-    }
-    return result;
-}
-
-function validPassword(password, errorSelector){
-    var result = true;
-    if (password == '' || password.length < 4){
-        showMessage(errorSelector, 'Password cannot be empty and must be more than 4 characters');
-        return result = false;
-    }
-    if (password.includes(' ')){
-        showMessage(errorSelector, 'Password cannot contain spaces');
-        return result = false;
-    }
-    if(result) {
-        errorSelector.text('');
-    }
-    return result;
-}
